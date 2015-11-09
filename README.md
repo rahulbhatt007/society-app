@@ -1,5 +1,5 @@
 # society-app
-<h1>This application is for financial Societies which sum up money and lend money to its members.</h1> 
+This application is for financial Societies which sum up money and lend money to its members. 
 
 <h2>This application provides:</h2>
 <li>interface to view member details
