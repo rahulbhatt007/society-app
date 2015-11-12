@@ -54,12 +54,16 @@ DROP TABLE IF EXISTS `deposity_history`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `deposity_history` (
   `id` int(11) NOT NULL,
-  `member_id` int(11) NOT NULL,
+  `member_id` int(11) DEFAULT NULL,
   `deposit_amount` double DEFAULT NULL,
   `penalty_amount` double DEFAULT NULL,
   `create_date` datetime NOT NULL,
+  `loan_id` int(11) DEFAULT NULL,
+  `type` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `member_id_idx` (`member_id`),
+  KEY `loan_id_idx` (`loan_id`),
+  CONSTRAINT `loan_id` FOREIGN KEY (`loan_id`) REFERENCES `loan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `member_id` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='deposity history details';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -128,34 +132,6 @@ CREATE TABLE `loan` (
 LOCK TABLES `loan` WRITE;
 /*!40000 ALTER TABLE `loan` DISABLE KEYS */;
 /*!40000 ALTER TABLE `loan` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `loan_deposit_history`
---
-
-DROP TABLE IF EXISTS `loan_deposit_history`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `loan_deposit_history` (
-  `loanid` int(11) NOT NULL,
-  `deposit_amount` double DEFAULT NULL,
-  `id` int(11) NOT NULL,
-  `create_date` datetime NOT NULL,
-  `penalty_amount` double DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `loan_id_idx` (`loanid`),
-  CONSTRAINT `loan_id` FOREIGN KEY (`loanid`) REFERENCES `loan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='loan history details';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `loan_deposit_history`
---
-
-LOCK TABLES `loan_deposit_history` WRITE;
-/*!40000 ALTER TABLE `loan_deposit_history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `loan_deposit_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -255,4 +231,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-09 18:57:33
+-- Dump completed on 2015-11-12 21:27:50
