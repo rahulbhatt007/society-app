@@ -10,7 +10,7 @@ module.exports.fetchData = function (req, res) {
   var id = req.params.id;
   var fields = {};
   if(id){
-    fields.id = id;
+    fields.id = parseInt(id, 10);
   }
   restService.fetchData(entity, '*', fields, {id: 'desc'}, res);
 };
@@ -27,7 +27,7 @@ module.exports.updateData = function (req, res) {
   var data = req.body;
   var fields = {};
   if(id){
-    fields.id = id;
+    fields.id = parseInt(id, 10);
   }
   restService.updateData(entity, data, fields, res);
 };

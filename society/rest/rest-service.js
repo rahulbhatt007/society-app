@@ -11,6 +11,7 @@ var pool = db.createPool(databaseConfiguration);
 module.exports.fetchData = function (table, fields, where, order, res) {
   pool.getConnection(function(err, connection) {
     mysqlUtilities.upgrade(connection);
+    mysqlUtilities.introspection(connection);
     connection.select(table, fields, where, order, function (err, rows, fields) {
       connection.release();
       if (err) throw err;
@@ -22,10 +23,11 @@ module.exports.fetchData = function (table, fields, where, order, res) {
 module.exports.createData = function (table, data, res) {
   pool.getConnection(function(err, connection) {
     mysqlUtilities.upgrade(connection);
+    mysqlUtilities.introspection(connection);
     connection.insert(table, data, function (err, recordId) {
       connection.release();
       if (err) throw err;
-      res.send(recordId);
+      res.send({id: recordId});
     });
   });
 };
@@ -33,10 +35,11 @@ module.exports.createData = function (table, data, res) {
 module.exports.updateData = function (table, data, where, res) {
   pool.getConnection(function(err, connection) {
     mysqlUtilities.upgrade(connection);
+    mysqlUtilities.introspection(connection);
     connection.update(table, data, where, function (err, affectedRows) {
       connection.release();
       if (err) throw err;
-      res.send(affectedRows);
+      res.send({count:affectedRows});
     });
   });
 };
