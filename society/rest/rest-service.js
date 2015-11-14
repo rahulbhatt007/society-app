@@ -36,10 +36,18 @@ module.exports.fetchAddressData = function (req, res) {
   invokeRest('SELECT * from address', res);
 };
 
+module.exports.fetchDepositData = function (req, res) {
+  invokeRest('SELECT * from deposit_history', res);
+};
+
+module.exports.fetchLoanData = function (req, res) {
+  invokeRest('SELECT * from loan', res);
+};
+
 module.exports.login = function (req, res) {
-  connection.connect();
+
 };
 
 module.exports.logout = function (req, res) {
-  connection.end();
+
 };
