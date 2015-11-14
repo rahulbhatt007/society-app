@@ -4,13 +4,10 @@ var router = express.Router();
 var societyService = require('../rest/society-service');
 
 /* GET users listing. */
-router.get('/get/member', societyService.fetchMemberData);
-router.get('/get/member/:id', societyService.fetchMemberData);
-router.get('/get/address', societyService.fetchAddressData);
-router.get('/get/address/:id', societyService.fetchAddressData)
-router.get('/get/loan', societyService.fetchLoanData);
-router.get('/get/loan/:id', societyService.fetchLoanData);
-router.get('/get/deposit/history', societyService.fetchDepositData);
-router.get('/get/deposit/history/:id', societyService.fetchDepositData);
+router.get('/get/:entity', societyService.fetchData);
+router.get('/get/:entity/:id', societyService.fetchData);
+router.post('/post/:entity', societyService.createData);
+router.put('/put/:entity', societyService.updateData);
+router.put('/put/:entity/:id', societyService.updateData);
 
 module.exports = router;
