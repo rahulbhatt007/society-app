@@ -13,7 +13,7 @@ This is created through expressjs boilerplate code
 <li>go to directory "society-app"
 <li>run "npm install express-generator -g"
 <li>run command "express society"
-<li>run "cd myapp" and "npm install"
+<li>run "cd society" and "npm install"
 <li>merge this git code to the boilerplate code
 <li>start application on windows run "set DEBUG=myapp:* & npm start"
 
@@ -23,5 +23,5 @@ This is created through expressjs boilerplate code
 <li>routes should be "/rest/get/<entity>" like for "address" full path should be "http://localhost:3000/rest/get/address" 
 
 <h2>Database Section:</h2>
-<li>database files are stored in /society/database path
+<li>database files are stored in "/society/database" path
 <li>society-app.sql contains table/view definition and data
