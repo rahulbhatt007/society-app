@@ -17,6 +17,10 @@ This project is already created through expressjs
 <li>UI should call $http service on "localhost:3000"
 <li>REST routes are defined in "/society/routes/users"
 <li>routes should be "/rest/get/\<entity\>" like for "address" full path should be "http://localhost:3000/rest/get/address" 
+<li>routes are generic
+<br>"/rest/post/\<entity\>"
+<br>"/rest/get/\<entity\>" and "/rest/get/\<entity\>/:id"
+<br>"/rest/put/\<entity\>" and "/rest/put/\<entity\>/:id"
 
 <h2>Database Section:</h2>
 <li>database files are stored in "/society/database" path
