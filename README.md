@@ -6,16 +6,12 @@ This application is for financial Societies which sum up money and lend money to
 <li>interface to deposit on behalf of member
 <li>interface to view member summary
 <li>interface to view society deposits and expenditure
-</ul>
 
 <h2>Developer Section:</h2>
-This is created through expressjs boilerplate code
-<li>go to directory "society-app"
-<li>run "npm install express-generator -g"
-<li>run command "express society"
-<li>run "cd society" and "npm install"
-<li>merge this git code to the boilerplate code
-<li>start application on windows run "set DEBUG=myapp:* & npm start"
+This project is already created through expressjs
+<li>goto "society" directory
+<li>run "npm install"
+<li>start application on windows run "set DEBUG=society:* & npm start"
 
 <h2>Application-Database Integration:</h2>
 <li>UI should call $http service on "localhost:3000"
