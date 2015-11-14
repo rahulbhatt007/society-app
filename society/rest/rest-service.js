@@ -3,6 +3,8 @@
  */
 
 var db = require('mysql');
+var mysqlUtilities = require('mysql-utilities');
+
 var pool = db.createPool({
   connectionLimit: 5,
   host: 'localhost',
@@ -11,57 +13,16 @@ var pool = db.createPool({
   password: 'admin123'
 });
 
-var invokeRest = function (query, res) {
+module.exports.invokeRest = function (table, fields, where, order, res) {
   pool.getConnection(function(err, connection) {
-    connection.query(query, function (err, rows, fields) {
+    mysqlUtilities.upgrade(connection);
+    connection.select(table, fields, where, order, function (err, rows, fields) {
       connection.release();
       if (err) throw err;
       res.send(rows);
     });
   });
 
-};
-
-/**
- *
- * @param req
- * @param res
- */
-
-module.exports.fetchMemberData = function (req, res) {
-  var id = req.params.id;
-  var query = 'SELECT * from member';
-  if(id){
-    query = query + ' where id =' + id;
-  }
-  invokeRest(query, res);
-};
-
-module.exports.fetchAddressData = function (req, res) {
-  var id = req.params.id;
-  var query = 'SELECT * from address';
-  if(id){
-    query = query + ' where id =' + id;
-  }
-  invokeRest(query, res);
-};
-
-module.exports.fetchDepositData = function (req, res) {
-  var id = req.params.id;
-  var query = 'SELECT * from deposit_history';
-  if(id){
-    query = query + ' where id =' + id;
-  }
-  invokeRest(query, res);
-};
-
-module.exports.fetchLoanData = function (req, res) {
-  var id = req.params.id;
-  var query = 'SELECT * from loan';
-  if(id){
-    query = query + ' where id =' + id;
-  }
-  invokeRest(query, res);
 };
 
 module.exports.login = function (req, res) {
