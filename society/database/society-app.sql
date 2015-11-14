@@ -42,6 +42,7 @@ CREATE TABLE `address` (
 
 LOCK TABLES `address` WRITE;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
+INSERT INTO `address` VALUES (1,'c-143','lal bagh','loni','ghaziabad','uttar pradesh','201102');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,6 +182,10 @@ CREATE TABLE `member` (
   `lname` varchar(45) DEFAULT NULL,
   `phone` varchar(10) NOT NULL,
   `addressid` int(11) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `modified_date` datetime DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `dob` date NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `member_address_id_idx` (`addressid`),
@@ -194,6 +199,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
+INSERT INTO `member` VALUES (1,'deepak','singh','pundir','8287536955',1,'2015-11-14 00:00:00','2015-11-14 00:00:00',1,'1983-11-15');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,4 +237,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-12 21:27:50
+-- Dump completed on 2015-11-14 12:08:24

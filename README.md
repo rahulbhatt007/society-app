@@ -13,3 +13,7 @@ This is created through expressjs boilerplate code
 <li>go to directory "society-app"
 <li>run command "express society"
 <li>merge this git code to the boilerplate code
+
+<h2>Database Section:</h2>
+<li>database files are stored in /society/database path
+<li>society-app.sql contains table/view definition and data
