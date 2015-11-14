@@ -29,19 +29,39 @@ var invokeRest = function (query, res) {
  */
 
 module.exports.fetchMemberData = function (req, res) {
-  invokeRest('SELECT * from member', res);
+  var id = req.params.id;
+  var query = 'SELECT * from member';
+  if(id){
+    query = query + ' where id =' + id;
+  }
+  invokeRest(query, res);
 };
 
 module.exports.fetchAddressData = function (req, res) {
-  invokeRest('SELECT * from address', res);
+  var id = req.params.id;
+  var query = 'SELECT * from address';
+  if(id){
+    query = query + ' where id =' + id;
+  }
+  invokeRest(query, res);
 };
 
 module.exports.fetchDepositData = function (req, res) {
-  invokeRest('SELECT * from deposit_history', res);
+  var id = req.params.id;
+  var query = 'SELECT * from deposit_history';
+  if(id){
+    query = query + ' where id =' + id;
+  }
+  invokeRest(query, res);
 };
 
 module.exports.fetchLoanData = function (req, res) {
-  invokeRest('SELECT * from loan', res);
+  var id = req.params.id;
+  var query = 'SELECT * from loan';
+  if(id){
+    query = query + ' where id =' + id;
+  }
+  invokeRest(query, res);
 };
 
 module.exports.login = function (req, res) {
