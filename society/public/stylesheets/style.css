@@ -62,6 +62,12 @@ img { max-width: 100%; }
     -o-background-size: cover;
     background-size: cover;
 }
+
+.admin-login{
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
 .inner-bg {
     padding: 60px 0 80px 0;
 }
@@ -99,7 +105,8 @@ img { max-width: 100%; }
 
 .form-top-left {
     float: left;
-    width: 75%;
+    width: 100%;
+    text-align: center;
     padding-top: 25px;
 }
 
