@@ -28,7 +28,7 @@ requirejs.config({
         // Major libraries
         'jquery': 'node_modules/jquery/dist/jquery',
         'jqueryUI': 'node_modules/jquery-ui/jquery-ui',
-        'ui-bootstrap': 'node_modules/angular-ui-bootstrap/ui-bootstrap-tpls',
+        'angular-ui-bootstrap': 'node_modules/angular-ui-bootstrap/ui-bootstrap-tpls',
         'angular-ui-grid': 'node_modules/angular-ui-grid/ui-grid'
     },
     shim: {
@@ -80,7 +80,7 @@ requirejs.config({
         'sch': {deps: ["ext"], exports: "sch"},
         'rx': {deps: ["jquery"], "exports": "rx"},
         'angular-gridster': {deps: ['angular']},
-        'ui-bootstrap': ['angular'],
+        'angular-ui-bootstrap': ['angular'],
         'rxjquery': {deps: ["jquery", "rx"]}
     },
     waitSeconds: 0,
