@@ -13,6 +13,8 @@
     "express": "~4.13.1",
     "lodash": "^3.10.1",
     "morgan": "~1.6.1",
+    "mysql": "2.9.0",
+    "mysql-utilities": "1.0.8",
     "requirejs": "^2.1.20",
     "serve-favicon": "~2.3.0"
   }

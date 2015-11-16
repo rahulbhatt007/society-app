@@ -13,11 +13,11 @@
         </script>
     </head>
     <body ng-controller="appController">
-        <header ng-bind-template="{{heading}}"></header>
+        <header ng-bind-template="{{heading}}" ng-hide="config.hideHeader"></header>
         <nav>Navigation bar</nav>
         <section>
             <div ng-view></div>
         </section>
-        <footer ng-bind-template="{{footer}}"></footer>
+        <footer ng-bind-template="{{footer}}" ng-hide="config.hideFooter"></footer>
     </body>
 </html>

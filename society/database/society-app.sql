@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `address`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `address` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `address1` varchar(45) DEFAULT NULL,
   `address2` varchar(45) DEFAULT NULL,
   `address3` varchar(45) DEFAULT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE `address` (
   `state` varchar(45) NOT NULL,
   `pincode` varchar(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='address details';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='address details';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,35 +42,40 @@ CREATE TABLE `address` (
 
 LOCK TABLES `address` WRITE;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
+INSERT INTO `address` VALUES (1,'C-143','lal bagh','loni','ghaziabad','uttar pradesh','201102'),(9,'C-143','lal bagh','loni','ghaziabad','uttar pradesh','201102'),(10,'C-12','lal bagh','loni','ghaziabad','uttar pradesh','201102');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `deposity_history`
+-- Table structure for table `deposit_history`
 --
 
-DROP TABLE IF EXISTS `deposity_history`;
+DROP TABLE IF EXISTS `deposit_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `deposity_history` (
-  `id` int(11) NOT NULL,
-  `member_id` int(11) NOT NULL,
+CREATE TABLE `deposit_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_id` int(11) DEFAULT NULL,
   `deposit_amount` double DEFAULT NULL,
   `penalty_amount` double DEFAULT NULL,
   `create_date` datetime NOT NULL,
+  `loan_id` int(11) DEFAULT NULL,
+  `type` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `member_id_idx` (`member_id`),
+  KEY `dh_loan_id_idx` (`loan_id`),
+  CONSTRAINT `dh_loan_id` FOREIGN KEY (`loan_id`) REFERENCES `loan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `member_id` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='deposity history details';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `deposity_history`
+-- Dumping data for table `deposit_history`
 --
 
-LOCK TABLES `deposity_history` WRITE;
-/*!40000 ALTER TABLE `deposity_history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `deposity_history` ENABLE KEYS */;
+LOCK TABLES `deposit_history` WRITE;
+/*!40000 ALTER TABLE `deposit_history` DISABLE KEYS */;
+/*!40000 ALTER TABLE `deposit_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -81,7 +86,7 @@ DROP TABLE IF EXISTS `interest_rates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `interest_rates` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` int(11) NOT NULL,
   `value` float NOT NULL,
   `create_date` datetime NOT NULL,
@@ -108,7 +113,7 @@ DROP TABLE IF EXISTS `loan`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `loan` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `memberid` int(11) NOT NULL,
   `active` binary(0) DEFAULT NULL,
   `createdate` datetime DEFAULT NULL,
@@ -128,34 +133,6 @@ CREATE TABLE `loan` (
 LOCK TABLES `loan` WRITE;
 /*!40000 ALTER TABLE `loan` DISABLE KEYS */;
 /*!40000 ALTER TABLE `loan` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `loan_deposit_history`
---
-
-DROP TABLE IF EXISTS `loan_deposit_history`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `loan_deposit_history` (
-  `loanid` int(11) NOT NULL,
-  `deposit_amount` double DEFAULT NULL,
-  `id` int(11) NOT NULL,
-  `create_date` datetime NOT NULL,
-  `penalty_amount` double DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `loan_id_idx` (`loanid`),
-  CONSTRAINT `loan_id` FOREIGN KEY (`loanid`) REFERENCES `loan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='loan history details';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `loan_deposit_history`
---
-
-LOCK TABLES `loan_deposit_history` WRITE;
-/*!40000 ALTER TABLE `loan_deposit_history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `loan_deposit_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -205,8 +182,11 @@ CREATE TABLE `member` (
   `lname` varchar(45) DEFAULT NULL,
   `phone` varchar(10) NOT NULL,
   `addressid` int(11) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `modified_date` datetime DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `dob` date NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `member_address_id_idx` (`addressid`),
   CONSTRAINT `member_address_id` FOREIGN KEY (`addressid`) REFERENCES `address` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='member details';
@@ -218,6 +198,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
+INSERT INTO `member` VALUES (1,'deepak','singh','pundir','8287536955',1,'2015-11-14 00:00:00','2015-11-14 00:00:00',1,'1983-11-15');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +210,7 @@ DROP TABLE IF EXISTS `society_expense`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `society_expense` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `amount` double NOT NULL,
   `description` varchar(50) DEFAULT NULL,
   `create_date` datetime NOT NULL,
@@ -255,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-09 18:57:33
+-- Dump completed on 2015-11-14 21:46:01
